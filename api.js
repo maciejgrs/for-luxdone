@@ -5,7 +5,7 @@ const fetchApi = async (study) => {
     let res = await fetch(`https://restcountries-v1.p.rapidapi.com/all`, {
       method: "GET",
       headers: {
-        "x-rapidapi-key": "35426aa0dfmsh1a9124fb110217dp1aeabbjsne9375541532e",
+        "x-rapidapi-key": apiKey,
         "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
       },
     }).then((res) => res.json());

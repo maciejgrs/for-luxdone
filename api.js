@@ -14,7 +14,6 @@ const fetchApi = async (study) => {
       buildQuiz(arr);
     } else {
       arr = [...res];
-      console.log(arr);
     }
   } catch (err) {
     console.log(err);

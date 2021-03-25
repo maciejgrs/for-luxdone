@@ -89,7 +89,7 @@ startBtn.addEventListener("click", () => {
   if (target) {
     fetchApi(false);
     answersNormalColor();
-	learning.style.display = 'none'
+    learning.style.display = "none";
   } else {
     alert("Pick level!");
   }
@@ -146,13 +146,7 @@ const buildStaticElResults = (numberOfCorrect) => {
   span.innerText = `Your result is ${numberOfCorrect}/10!`;
   span.style.marginBottom = "10px";
   container.appendChild(span);
-  const button = document.createElement("button");
-  button.classList.add("btn");
-  button.innerText = "Back to the lobby";
-  container.appendChild(button);
-  button.addEventListener("click", () => {
-    window.location.reload();
-  });
+  backToLobbyButtonCreate()
 };
 
 const learn = () => {
@@ -161,17 +155,19 @@ const learn = () => {
   input.style.marginLeft = "12px";
   input.style.marginRight = "12px";
   container.appendChild(input);
-  const button = document.createElement("button");
-  button.classList.add("btn");
-  button.innerText = "Back to the lobby";
-  container.appendChild(button);
-  button.addEventListener("click", () => {
-    window.location.reload();
-  });
+   backToLobbyButtonCreate()
   fetchApi(true);
   input.addEventListener("input", (event) => {
     filterData(arr, event.target.value);
   });
 };
-
+const backToLobbyButtonCreate = () => {
+	const button = document.createElement("button");
+	button.classList.add("btn");
+	button.innerText = "Back to the lobby";
+	container.appendChild(button);
+	button.addEventListener("click", () => {
+	  window.location.reload();
+	});
+}
 learning.addEventListener("click", learn);

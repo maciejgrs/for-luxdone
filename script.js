@@ -30,14 +30,20 @@ const chooseLevel = () => {
 
 chooseLevel();
 const switchBuild = () => {
-  fetchApi(region);
+  fetchApi(region)
 };
 
 const buildQuiz = (arr) => {
+ 
+	let QuestionsArr = arr.sort(() => Math.random() - Math.random()).slice(0, 4)
+	console.log(arr);
+	console.log(QuestionsArr);
+	 
+
   if (target !== "") {
     console.log(arr);
-    country = arr[0].name;
-    correctAnswer = arr[0].capital;
+    country = QuestionsArr[0].name;
+    correctAnswer = QuestionsArr[0].capital;
     console.log(correctAnswer);
     header.classList.add("hide");
     startBtn.classList.add("hide");
@@ -45,22 +51,30 @@ const buildQuiz = (arr) => {
 
     let i = 0;
     let capitals = [
-      arr[0].capital,
-      arr[1].capital,
-      arr[2].capital,
-      arr[3].capital,
+		QuestionsArr[0].capital,
+		QuestionsArr[1].capital,
+		QuestionsArr[2].capital,
+		QuestionsArr[3].capital,
     ];
 
-    question.innerText = `What is the capital of ${country}`;
+     
+ 
+	question.innerText = `What is the capital of ${country}`;
     answerBtns.forEach((el) => {
       let random = capitals
         .sort(() => Math.random() - Math.random())
         .slice(0, 1);
       capitals.splice(random, 1);
-      //   el.innerText = arr[i].capital;
+     
       el.innerText = random;
       i++;
     });
+	console.log(QuestionsArr[0]);
+    arr.splice(
+		arr.indexOf(QuestionsArr[0]), 1
+	  );
+	 
+	console.log(arr);
     answerContainer.addEventListener("click", checkClick);
   }
 };
@@ -72,11 +86,9 @@ const checkClick = (e) => {
 };
 const checkAnswer = (answer, correctAnswer, country) => {
   if (answer.toString() === correctAnswer.toString()) {
-    
     questionNumber++;
     resultsArr.push([answer, correctAnswer, country, "correct!"]);
   } else {
-   
     questionNumber++;
     resultsArr.push([
       answer,
@@ -101,9 +113,10 @@ nextBtn.addEventListener("click", () => {
   if (answer) {
     checkAnswer(answer, correctAnswer, country);
 
-    switchBuild();
+    buildQuiz(arr)
     answersNormalColor();
     displayResults();
+	answer = ''
   } else {
     alert("Pick something!");
   }
@@ -111,7 +124,6 @@ nextBtn.addEventListener("click", () => {
 
 const displayResults = () => {
   if (questionNumber === 10) {
-    
     container.innerHTML = "";
     let numberOfCorrect = 0;
     resultsArr.forEach((el) => {
@@ -150,3 +162,4 @@ const buildStaticElResults = (numberOfCorrect) => {
     window.location.reload();
   });
 };
+ 

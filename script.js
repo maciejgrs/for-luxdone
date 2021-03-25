@@ -13,6 +13,7 @@ let country;
 let questionNumber = 0;
 let resultsArr = [];
 let num = 1;
+
 const chooseLevel = () => {
   answerBtns.forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -29,59 +30,44 @@ const chooseLevel = () => {
 };
 
 chooseLevel();
-const switchBuild = () => {
-  fetchApi(region)
-};
-
-const buildQuiz = (arr) => {
  
-	let QuestionsArr = arr.sort(() => Math.random() - Math.random()).slice(0, 4)
-	console.log(arr);
-	console.log(QuestionsArr);
-	 
+const buildQuiz = (arr) => {
+  let QuestionsArr = arr.sort(() => Math.random() - Math.random()).slice(0, 4);
 
   if (target !== "") {
-    console.log(arr);
     country = QuestionsArr[0].name;
     correctAnswer = QuestionsArr[0].capital;
-    console.log(correctAnswer);
+
     header.classList.add("hide");
     startBtn.classList.add("hide");
     nextBtn.classList.remove("hide");
 
-    let i = 0;
     let capitals = [
-		QuestionsArr[0].capital,
-		QuestionsArr[1].capital,
-		QuestionsArr[2].capital,
-		QuestionsArr[3].capital,
+      QuestionsArr[0].capital,
+      QuestionsArr[1].capital,
+      QuestionsArr[2].capital,
+      QuestionsArr[3].capital,
     ];
 
-     
- 
-	question.innerText = `What is the capital of ${country}`;
+    question.innerText = `What is the capital of ${country}`;
     answerBtns.forEach((el) => {
       let random = capitals
         .sort(() => Math.random() - Math.random())
         .slice(0, 1);
       capitals.splice(random, 1);
-     
+
       el.innerText = random;
-      i++;
     });
-	console.log(QuestionsArr[0]);
-    arr.splice(
-		arr.indexOf(QuestionsArr[0]), 1
-	  );
-	 
-	console.log(arr);
+
+    arr.splice(arr.indexOf(QuestionsArr[0]), 1);
+
     answerContainer.addEventListener("click", checkClick);
   }
 };
 
 const checkClick = (e) => {
   answer = e.target.innerText;
-  console.log(answer);
+
   return answer;
 };
 const checkAnswer = (answer, correctAnswer, country) => {
@@ -99,8 +85,12 @@ const checkAnswer = (answer, correctAnswer, country) => {
   }
 };
 startBtn.addEventListener("click", () => {
-  switchBuild();
-  answersNormalColor();
+  if (target) {
+	fetchApi();
+    answersNormalColor();
+  } else {
+    alert("Pick level!");
+  }
 });
 
 const answersNormalColor = () => {
@@ -113,10 +103,10 @@ nextBtn.addEventListener("click", () => {
   if (answer) {
     checkAnswer(answer, correctAnswer, country);
 
-    buildQuiz(arr)
+    buildQuiz(arr);
     answersNormalColor();
     displayResults();
-	answer = ''
+    answer = "";
   } else {
     alert("Pick something!");
   }
@@ -162,4 +152,3 @@ const buildStaticElResults = (numberOfCorrect) => {
     window.location.reload();
   });
 };
- 

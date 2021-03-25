@@ -1,6 +1,6 @@
 let arr;
 
-const fetchApi = async () => {
+const fetchApi = async (study) => {
   try {
     let res = await fetch(`https://restcountries-v1.p.rapidapi.com/all`, {
       method: "GET",
@@ -9,10 +9,13 @@ const fetchApi = async () => {
         "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
       },
     }).then((res) => res.json());
-
-    arr = sortFetchedData(res, target);
-
-    buildQuiz(arr);
+    if (!study) {
+      arr = sortFetchedData(res, target);
+      buildQuiz(arr);
+    } else {
+      arr = [...res];
+      console.log(arr);
+    }
   } catch (err) {
     console.log(err);
   }
@@ -50,4 +53,21 @@ const filterRes = (res, population, bool) => {
   }
 
   return res;
+};
+
+const filterData = (arr, text) => {
+  const filteredData = arr.filter((el) => {
+    if (text && text.length > 0) {
+      if (el.name.toLowerCase() === text.toLowerCase()) {
+        const capital = document.createElement("div");
+        capital.innerText = `${el.name} - ${el.capital}`;
+        container.appendChild(capital);
+        return el.capital;
+      }
+    } else {
+      return el;
+    }
+  });
+
+  return filteredData;
 };

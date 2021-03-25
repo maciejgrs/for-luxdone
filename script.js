@@ -6,6 +6,7 @@ const question = document.querySelector("#question");
 const answerBtns = document.querySelectorAll(".answer");
 const answerContainer = document.querySelector("#answer-buttons");
 const container = document.querySelector(".container");
+const learning = document.querySelector("#learning-btn");
 let target;
 let answer;
 let correctAnswer;
@@ -30,7 +31,7 @@ const chooseLevel = () => {
 };
 
 chooseLevel();
- 
+
 const buildQuiz = (arr) => {
   let QuestionsArr = arr.sort(() => Math.random() - Math.random()).slice(0, 4);
 
@@ -86,8 +87,9 @@ const checkAnswer = (answer, correctAnswer, country) => {
 };
 startBtn.addEventListener("click", () => {
   if (target) {
-	fetchApi();
+    fetchApi(false);
     answersNormalColor();
+	learning.style.display = 'none'
   } else {
     alert("Pick level!");
   }
@@ -152,3 +154,24 @@ const buildStaticElResults = (numberOfCorrect) => {
     window.location.reload();
   });
 };
+
+const learn = () => {
+  container.innerHTML = "Type name of the country to see his capital";
+  const input = document.createElement("input");
+  input.style.marginLeft = "12px";
+  input.style.marginRight = "12px";
+  container.appendChild(input);
+  const button = document.createElement("button");
+  button.classList.add("btn");
+  button.innerText = "Back to the lobby";
+  container.appendChild(button);
+  button.addEventListener("click", () => {
+    window.location.reload();
+  });
+  fetchApi(true);
+  input.addEventListener("input", (event) => {
+    filterData(arr, event.target.value);
+  });
+};
+
+learning.addEventListener("click", learn);

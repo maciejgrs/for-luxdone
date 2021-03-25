@@ -57,6 +57,7 @@
   
   .btn:hover {
     border-color: black;
+    cursor: pointer;
   }
   
   .btn.correct {
@@ -73,10 +74,7 @@
     font-weight: bold;
     padding: 10px 20px;
   }
-  .start-btn:hover, .next-btn:hover {
-      cursor:pointer;
-  } 
-  
+ 
   .controls {
     display: flex;
     flex-direction: column;

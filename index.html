@@ -6,26 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles.css" rel="stylesheet">
     <title>Document</title>
+    <link rel="shortcut icon" href="#">
     
 </head>
 <body>
     <div class="container">
-        <div id="question-container" class="hide">
-          <div id="question">Question</div>
+        <h2>  Countries and Capitals Quiz </h2> 
+        <div id="question-container" >
+          <div id="question">Choose difficulty level</div>
           <div id="answer-buttons" class="btn-grid">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
+            <button class="answer btn" id="1">Easy</button>
+            <button class="answer btn" id="2">Normal</button>
+            <button class="answer btn" id="3">Hard</button>
+            <button class="answer btn" id="4">Nigthmare</button>
           </div>
         </div>
         <div class="controls">
             
-<h2>  Countries and Capitals Quiz </h2> 
+ 
           <button id="start-btn" class="start-btn btn">Start</button>
           <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
       </div>
     <script src="script.js"></script>
+    <script src="api.js"></script>
 </body>
 </html>

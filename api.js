@@ -1,6 +1,7 @@
-let arr;
-
-const fetchApi = async (study) => {
+export let arr;
+import {target, buildQuiz} from '/script.js';
+import { apiKey } from '/config.js';
+export const fetchApi = async (study) => {
   try {
     let res = await fetch(`https://restcountries-v1.p.rapidapi.com/all`, {
       method: "GET",
@@ -20,7 +21,8 @@ const fetchApi = async (study) => {
   }
 };
 
-const sortFetchedData = (res, level) => {
+
+export const sortFetchedData = (res, level) => {
   switch (level) {
     case "1":
       return filterRes(res, 99999, true);
@@ -36,7 +38,7 @@ const sortFetchedData = (res, level) => {
   return res;
 };
 
-const filterRes = (res, population, bool) => {
+export const filterRes = (res, population, bool) => {
   if (bool) {
     res = res.filter((el) => {
       if (el.population > 99999 && el.region === "Europe") {
@@ -54,7 +56,7 @@ const filterRes = (res, population, bool) => {
   return res;
 };
 
-const filterData = (arr, text) => {
+export const filterData = (arr, text) => {
   const filteredData = arr.filter((el) => {
     if (text && text.length > 0) {
       if (el.name.toLowerCase() === text.toLowerCase()) {

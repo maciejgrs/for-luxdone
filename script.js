@@ -1,3 +1,6 @@
+import { arr, fetchApi, filterData} from '/api.js';
+ 
+
 const startBtn = document.querySelector("#start-btn");
 const nextBtn = document.querySelector("#next-btn");
 const questionsContainer = document.querySelector("#question-container");
@@ -7,7 +10,7 @@ const answerBtns = document.querySelectorAll(".answer");
 const answerContainer = document.querySelector("#answer-buttons");
 const container = document.querySelector(".container");
 const learning = document.querySelector("#learning-btn");
-let target;
+export let target;
 let answer;
 let correctAnswer;
 let country;
@@ -32,7 +35,7 @@ const chooseLevel = () => {
 
 chooseLevel();
 
-const buildQuiz = (arr) => {
+export const buildQuiz = (arr) => {
   let QuestionsArr = arr.sort(() => Math.random() - Math.random()).slice(0, 4);
 
   if (target !== "") {

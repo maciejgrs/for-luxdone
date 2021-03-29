@@ -6,7 +6,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const cors = require("cors");
-app.use(express.static(`api`));
 const API_KEY = process.env.API_KEY;
 app.use(cors());
 

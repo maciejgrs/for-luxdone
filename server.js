@@ -23,8 +23,7 @@ app.get("/quiz", (req, res) => {
       return response.json();
     })
     .then(function (myJson) {
-      console.log(myJson);
-      res.send(myJson); //cant send number??
+      res.send(myJson); 
     })
     .catch(function (error) {
       console.log(

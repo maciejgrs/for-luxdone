@@ -2,14 +2,9 @@ let arr = [];
 
 const fetchApi = async (study) => {
   try {
-    let res = await fetch("http://localhost:3000/quiz/", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-       
-      },
-    }).then((res) => res.json());
+    let res = await fetch("http://localhost:3000/quiz/").then((res) =>
+      res.json()
+    );
     if (!study) {
       arr = sortFetchedData(res, target);
       buildQuiz(arr);

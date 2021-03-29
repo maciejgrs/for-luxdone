@@ -1,13 +1,13 @@
-export let arr;
-import {target, buildQuiz} from '/script.js';
-import { apiKey } from '/config.js';
-export const fetchApi = async (study) => {
+let arr = [];
+
+const fetchApi = async (study) => {
   try {
-    let res = await fetch(`https://restcountries-v1.p.rapidapi.com/all`, {
-      method: "GET",
+    let res = await fetch("http://localhost:3000/quiz/", {
+      method: "get",
       headers: {
-        "x-rapidapi-key": apiKey,
-        "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
+        "Content-Type": "application/json",
+        Accept: "application/json",
+       
       },
     }).then((res) => res.json());
     if (!study) {
@@ -21,8 +21,7 @@ export const fetchApi = async (study) => {
   }
 };
 
-
-export const sortFetchedData = (res, level) => {
+const sortFetchedData = (res, level) => {
   switch (level) {
     case "1":
       return filterRes(res, 99999, true);
@@ -38,7 +37,7 @@ export const sortFetchedData = (res, level) => {
   return res;
 };
 
-export const filterRes = (res, population, bool) => {
+const filterRes = (res, population, bool) => {
   if (bool) {
     res = res.filter((el) => {
       if (el.population > 99999 && el.region === "Europe") {
@@ -56,7 +55,7 @@ export const filterRes = (res, population, bool) => {
   return res;
 };
 
-export const filterData = (arr, text) => {
+const filterData = (arr, text) => {
   const filteredData = arr.filter((el) => {
     if (text && text.length > 0) {
       if (el.name.toLowerCase() === text.toLowerCase()) {

@@ -6,3 +6,7 @@ https://restcountries.eu/
 *in this case you would need APIkey from me 
 2) or you can see it live on
 https://mgrs.me/quiz/luxdone.html
+
+update:
+i made calling api from backend, so downloading package wouldnt be working on the local computer
+on the site is still only frontend app

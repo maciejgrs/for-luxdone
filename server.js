@@ -18,13 +18,13 @@ app.get("/quiz", (req, res) => {
       "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
     },
   })
-    .then(function (response) {
-      return response.json();
+    .then((res) => {
+      return res.json();
     })
-    .then(function (myJson) {
-      res.send(myJson); 
+    .then((myJson) => {
+      res.send(myJson);
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(
         "😮 There has been a problem with the fetch operation: ",
         error.message
